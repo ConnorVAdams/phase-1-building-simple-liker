@@ -8,31 +8,20 @@ const FULL_HEART = '♥'
 const likeGlyphs = [...document.querySelectorAll('.like-glyph')];
 const errorBanner = document.querySelector('#modal');
 
-// TODO Can the first line of this callback function be refactored to use .toggle()?
-//Adds an event listener to like-glyph that changes the text and class of the heart.
-likeGlyphs.forEach((element) => {
-  element.addEventListener('click', (e) => {
-    e.target.textContent === FULL_HEART ? e.target.textContent = EMPTY_HEART : e.target.textContent = FULL_HEART; //Toggles heart between empty and full.
-    e.target.classList.toggle('activated-heart') //Toggles heart between red and not red.
-  });
-});
-
-//Generalizes the above function for use in the request/response function.
-const changeHeartStyling = (heartElement) => {
-  heartElement.textContent === FULL_HEART ? e.target.textContent = EMPTY_HEART : e.target.textContent = FULL_HEART
-  heartElement.classList.toggle('activated-heart');
-};
-
-//Removes error modal after 3 seconds when shown.
-// setTimeout(() => {
-//   errorBanner.classList.toggle('hidden')
-// }, 3000);
-
-//Adds an event listener that sends an HTTP request when the like button is clicked.
-likeGlyphs.forEach((element) => {
-  element.addEventListener('click', () => {
-    mimicServerCall()
-    .then()
+//Adds an event listener to manage heart styling and success/failure of HTTP requests.
+likeGlyphs.forEach((glyph) => { //Iterate through the array of glyphs.
+  glyph.addEventListener('click', (e) => { //Attach an event listener to each.
+    mimicServerCall() //This takes the place of a fetch request for this lab.
+    .then(() => { //Receives a promise and executes the following function if the Promise is successful.
+      e.target.textContent === FULL_HEART ? e.target.textContent = EMPTY_HEART : e.target.textContent = FULL_HEART; //Toggles the heart between empty and full.
+      e.target.classList.toggle('activated-heart'); //Toggles the heart between red and greyscale.
+    })
+    .catch(() => { //Receives a promise and defines behavior in the event of an unsuccessful response.
+      errorBanner.classList.remove('hidden'); //Shows error banner.
+      setTimeout(() => { //Hides error banner after 3 seconds.
+        errorBanner.classList.add('hidden')
+        }, 3000);
+    })
   });
 });
 
