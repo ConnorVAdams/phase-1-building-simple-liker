@@ -5,8 +5,28 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 //Initialize variables for DOM elements that will need to be manipulated.
-const likeGlyph = document.querySelectorAll('.like-glyph')
+const likeGlyphs = [...document.querySelectorAll('.like-glyph')]
 const errorBanner = document.querySelector('#modal')
+
+likeGlyphs.forEach((element) => {
+  element.addEventListener('click', () => {
+    console.log('pinging server')
+  })
+})
+
+likeGlyphs.forEach((element) => {
+  element.addEventListener('click', () => {
+    console.log('updating glyph')
+  })
+})
+
+// likeGlyph.addEventListener('click', () => {
+//   console.log('changing glyph')
+// })
+
+// likeGlyph.addEventListener('click', () => {
+//   console.log('pinging server')
+// })
 
 //Added to heart buttons w/ an event listener. Pings the server and changes the content of the span w/ class 'like-glyph'
 const addLike = () => {
@@ -22,11 +42,11 @@ const addLike = () => {
 }
 
 //Defines behavior for when user clicks on heart (using .toggle()), dependent on whether or not it's already been liked.
-const heartClick = () => {
+const changeGlyph = ('click', (e) => {
   //If the heart class is activated, remove that class and change the glpyh.
-
+  console.log(e.target)
   //Else add that class and change the glyph.
-}
+})
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
