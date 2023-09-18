@@ -8,24 +8,25 @@ const FULL_HEART = '♥'
 const likeGlyphs = [...document.querySelectorAll('.like-glyph')]
 const errorBanner = document.querySelector('#modal')
 
-likeGlyphs.forEach((element) => {
-  element.addEventListener('click', () => {
-    console.log('pinging server')
-  })
-})
-
-likeGlyphs.forEach((element) => {
-  element.addEventListener('click', () => {
-    console.log('updating glyph')
-  })
-})
-
-// likeGlyph.addEventListener('click', () => {
-//   console.log('changing glyph')
+//Adds an event listener that sends an HTTP request when the like button is clicked.
+// likeGlyphs.forEach((element) => {
+//   element.addEventListener('click', () => {
+//     console.log('pinging server')
+//   })
 // })
 
-// likeGlyph.addEventListener('click', () => {
-//   console.log('pinging server')
+//Adds an event listener that changes the text and class of the heart.
+likeGlyphs.forEach((element) => {
+  element.addEventListener('click', (e) => {
+    e.target.textContent === FULL_HEART ? e.target.textContent = EMPTY_HEART : e.target.textContent = FULL_HEART;
+  })
+})
+
+//Defines behavior for when user clicks on heart (using .toggle()), dependent on whether or not it's already been liked.
+// const changeGlyph = ('click', (e) => {
+//   //If the heart class is activated, remove that class and change the glpyh.
+//   console.log(e.target)
+//   //Else add that class and change the glyph.
 // })
 
 //Added to heart buttons w/ an event listener. Pings the server and changes the content of the span w/ class 'like-glyph'
@@ -40,13 +41,6 @@ const addLike = () => {
 
     //Make modal hidden again after 3 seconds.
 }
-
-//Defines behavior for when user clicks on heart (using .toggle()), dependent on whether or not it's already been liked.
-const changeGlyph = ('click', (e) => {
-  //If the heart class is activated, remove that class and change the glpyh.
-  console.log(e.target)
-  //Else add that class and change the glyph.
-})
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
