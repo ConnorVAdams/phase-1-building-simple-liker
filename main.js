@@ -8,13 +8,6 @@ const FULL_HEART = '♥'
 const likeGlyphs = [...document.querySelectorAll('.like-glyph')];
 const errorBanner = document.querySelector('#modal');
 
-//Adds an event listener that sends an HTTP request when the like button is clicked.
-// likeGlyphs.forEach((element) => {
-//   element.addEventListener('click', () => {
-//     console.log('pinging server')
-//   })
-// })
-
 // TODO Can the first line of this callback function be refactored to use .toggle()?
 //Adds an event listener to like-glyph that changes the text and class of the heart.
 likeGlyphs.forEach((element) => {
@@ -24,12 +17,18 @@ likeGlyphs.forEach((element) => {
   });
 });
 
-//Adds an event listener to the error modal which toggles show/hide and removes it after 3 seconds if shown.
-const toggleErrorModal = () => {
-  errorBanner.toggle('hidden')
-}
+//Removes error modal after 3 seconds when shown.
+// setTimeout(() => {
+//   errorBanner.classList.toggle('hidden')
+// }, 3000);
 
-errorBanner.setTimeOut
+//Adds an event listener that sends an HTTP request when the like button is clicked.
+likeGlyphs.forEach((element) => {
+  element.addEventListener('click', () => {
+    mimicServerCall();
+    
+  });
+});
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
