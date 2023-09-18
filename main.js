@@ -17,6 +17,12 @@ likeGlyphs.forEach((element) => {
   });
 });
 
+//Generalizes the above function for use in the request/response function.
+const changeHeartStyling = (heartElement) => {
+  heartElement.textContent === FULL_HEART ? e.target.textContent = EMPTY_HEART : e.target.textContent = FULL_HEART
+  heartElement.classList.toggle('activated-heart');
+};
+
 //Removes error modal after 3 seconds when shown.
 // setTimeout(() => {
 //   errorBanner.classList.toggle('hidden')
@@ -25,8 +31,8 @@ likeGlyphs.forEach((element) => {
 //Adds an event listener that sends an HTTP request when the like button is clicked.
 likeGlyphs.forEach((element) => {
   element.addEventListener('click', () => {
-    mimicServerCall();
-    
+    mimicServerCall()
+    .then()
   });
 });
 
